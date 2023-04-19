@@ -37,15 +37,18 @@ object Solitaire extends App:
 
   extension (p: Position)
     private def isJumpPossible(dest: Position): Boolean =
+      // Get coordinates of the current position
+      val (x, y) = p._2
       def isDiagonalJumpPossible: Boolean =
         (for
-          x <- -2 to 2 by 4
-          y <- -2 to 2 by 4
+          x1 <- (x-2) to (x+2) by 4
+          y1 <- (y-2) to (y+2) by 4
         yield
-          (0, (x + 2, y + 2))).contains(dest)
+          println(s"($x1, $y1)")
+          (0, (x1 + 2, y1 + 2))).contains(dest)
       isDiagonalJumpPossible
 
-  val testPos: Position = (0,(2,2))
+  val testPos: Position = (0,(1,1))
   val testDest: Position = (0,(4,4))
   val value = testPos.isJumpPossible(testDest)
 
